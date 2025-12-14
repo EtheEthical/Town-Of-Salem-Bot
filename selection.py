@@ -12,7 +12,7 @@ print("Ethan")
 print("Ben")
 print("Etc")
 print(" ")
-path = input("Please paste the path to the file that has all the players: ")
+path = input("Please paste the path to the file that has all the players: ").rstrip()
 
 
 with open(path, 'r') as file:
