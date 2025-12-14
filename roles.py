@@ -21,7 +21,7 @@ class Coven:
     def select_role(self, player):
         if not self.power_selected:
             if random.randint(1, 2) == 1:
-                self.power_selected = False
+                self.power_selected = True
                 role = self.power[random.randint(0, len(self.power)-1)]
             else:
                 role = self.everythingelse[random.randint(0, len(self.everythingelse)-1)]
@@ -33,10 +33,49 @@ class Coven:
 
         playerList.playerRoleList[player] = role
 
+
+class Apoc:
+    def __init__(self):
+        self.roles = ["Soul Collector",
+                               "Baker",
+                               "Plaugebearer",
+                               "Beserker",
+                               "Death",
+                               "Famine",
+                               "Pestilence",
+                               "War"]
+
+    def select_role(self, player):
+            role = self.roles[random.randint(0, len(self.roles) - 1)]
+            self.roles.remove(role)
+            playerList.playerRoleList[player] = role
+
+class Neutral:
+    def __init__(self):
+        self.evil = ["Pirate",
+                     "Jester",
+                     "Executioner",
+                     "Amnesiac"]
+        self.killing = ["Arsonist",
+                        "Serial Killer",
+                        "Werewolf",
+                        "Shroud",
+                        "Psycopath"]
+
+    def select_role(self, player):
+        if random.randint(1, 2) == 1:
+            role = self.evil[random.randint(0, len(self.evil)-1)]
+            self.evil.remove(role)
+
+        else:
+            role = self.killing[random.randint(0, len(self.killing)-1)]
+
+        playerList.playerRoleList[player] = role
+
 class Town:
     def __init__(self):
         self.power_count = 0
-        self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor"]
+        self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor", "D"]
         self.everythingelse = ["Admirer",
                                "Catalyst",
                                "Retributionist",
