@@ -4,17 +4,16 @@ import playerList
 class Coven:
     def __init__(self):
         self.power_selected = False
+        self.killing_selected = False
         self.power = ["Coven Leader", "Hex Master", "Witch"]
-        self.everythingelse = ["Conjurer",
-                               "Dreamweaver",
+        self.killing = ["Conjurer", "Jinx", "Ritualist"]
+        self.everythingelse = ["Dreamweaver",
                                "Enchanter",
                                "Illusionist",
-                               "Jinx",
                                "Medusa",
                                "Necromancer",
                                "Poisoner",
                                "Potion Master",
-                               "Ritualist",
                                "Voodoo Master",
                                "Wilding"]
 
@@ -26,7 +25,15 @@ class Coven:
             else:
                 role = self.everythingelse[random.randint(0, len(self.everythingelse)-1)]
                 self.everythingelse.remove(role)
-    
+        if not self.killing_selected:
+            if random.randint(1, 2) == 1:
+                self.killing_selected = True
+                role = self.killing[random.randint(0, len(self.killing)-1)]
+            else:
+                role = self.everythingelse[random.randint(0, len(self.everythingelse) - 1)]
+                self.everythingelse.remove(role)
+
+
         else:
             role = self.everythingelse[random.randint(0, len(self.everythingelse) - 1)]
             self.everythingelse.remove(role)
@@ -39,11 +46,7 @@ class Apoc:
         self.roles = ["Soul Collector",
                                "Baker",
                                "Plaugebearer",
-                               "Beserker",
-                               "Death",
-                               "Famine",
-                               "Pestilence",
-                               "War"]
+                               "Beserker",]
 
     def select_role(self, player):
             role = self.roles[random.randint(0, len(self.roles) - 1)]
@@ -60,7 +63,7 @@ class Neutral:
                         "Serial Killer",
                         "Werewolf",
                         "Shroud",
-                        "Psycopath"]
+                        "Psychopath"]
 
     def select_role(self, player):
         if random.randint(1, 2) == 1:
@@ -75,7 +78,7 @@ class Neutral:
 class Town:
     def __init__(self):
         self.power_count = 0
-        self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor", "D"]
+        self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor", "Duelist"]
         self.everythingelse = ["Admirer",
                                "Catalyst",
                                "Retributionist",

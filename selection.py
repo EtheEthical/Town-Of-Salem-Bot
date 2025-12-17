@@ -1,6 +1,7 @@
 import roles
 import playerList
 import random
+from colorama import Fore
 
 MaxApoc = random.randint(0, 4)
 MaxCoven = random.randint(2, 4)
@@ -61,4 +62,16 @@ def StartNewGame():
 StartNewGame()
 
 for k, v in playerList.playerRoleList.items():
-    print(f"{k}: {v}")
+
+    color = Fore.WHITE
+
+    if v in playerList.coven:
+        color = Fore.RED
+    if v in playerList.apoc:
+        color = Fore.MAGENTA
+    if v in playerList.neutral:
+        color = Fore.YELLOW
+    if v in playerList.town:
+        color = Fore.GREEN
+
+    print(color + f"{k}: {v}")

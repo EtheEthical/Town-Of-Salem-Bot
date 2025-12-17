@@ -9,6 +9,10 @@ bot = discord.Bot()
 gameMaster = 1432880451604709547
 
 
+MaxApoc = random.randint(0, 4)
+MaxCoven = random.randint(2, 4)
+MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - random.randint(5, len(playerList.playerList)-MaxCoven-MaxApoc+5)
+
 
 def addPlayerToGame(player):
     playerList.playerList.append(player)
@@ -16,15 +20,34 @@ def addPlayerToGame(player):
 def StartNewGame():
     Coven = roles.Coven()
     CovenCount = 0
+
+    Apoc = roles.Apoc()
+    ApocCount = 0
+
+    Neutral = roles.Neutral()
+    NeutralCount = 0
+
     Town = roles.Town()
 
-    for i in range(len(playerList.playerList)):
+    while playerList.playerList:
 
         playerfr = playerList.playerList[random.randint(0, len(playerList.playerList)-1)]
-        if CovenCount < 4:
+
+        if CovenCount < MaxCoven:
             Coven.select_role(playerfr)
             playerList.playerList.remove(playerfr)
             CovenCount = CovenCount + 1
+
+        elif ApocCount < MaxApoc:
+            Apoc.select_role(playerfr)
+            playerList.playerList.remove(playerfr)
+            ApocCount = ApocCount + 1
+
+        elif NeutralCount < MaxNeutral:
+            Neutral.select_role(playerfr)
+            playerList.playerList.remove(playerfr)
+            NeutralCount = NeutralCount + 1
+
         else:
             Town.select_role(playerfr)
             playerList.playerList.remove(playerfr)
