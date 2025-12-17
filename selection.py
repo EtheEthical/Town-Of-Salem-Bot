@@ -1,10 +1,10 @@
 import roles
 import playerList
-import random
+from random import randint
 from colorama import Fore
 
-MaxApoc = random.randint(0, 4)
-MaxCoven = random.randint(2, 4)
+MaxApoc = randint(0, 4)
+MaxCoven = randint(2, 4)
 
 
 print("Formatting: ")
@@ -20,7 +20,7 @@ with open(path, 'r') as file:
     for line in file:
         playerList.playerList.append(line.strip())
 
-MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - random.randint(5, len(playerList.playerList)-MaxCoven-MaxApoc+5)
+MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(5, len(playerList.playerList)-MaxCoven-MaxApoc+5)
 
 
 def StartNewGame():
@@ -37,7 +37,7 @@ def StartNewGame():
 
     while playerList.playerList:
 
-        playerfr = playerList.playerList[random.randint(0, len(playerList.playerList)-1)]
+        playerfr = playerList.playerList[randint(0, len(playerList.playerList)-1)]
 
         if CovenCount < MaxCoven:
             Coven.select_role(playerfr)
@@ -66,9 +66,9 @@ for k, v in playerList.playerRoleList.items():
     color = Fore.WHITE
 
     if v in playerList.coven:
-        color = Fore.RED
-    if v in playerList.apoc:
         color = Fore.MAGENTA
+    if v in playerList.apoc:
+        color = Fore.RED
     if v in playerList.neutral:
         color = Fore.YELLOW
     if v in playerList.town:
