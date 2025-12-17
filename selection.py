@@ -75,3 +75,6 @@ for k, v in playerList.playerRoleList.items():
         color = Fore.GREEN
 
     print(color + f"{k}: {v}")
+
+while True:
+    keep_open = input(" ")
