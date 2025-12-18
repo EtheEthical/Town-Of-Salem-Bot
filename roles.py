@@ -1,4 +1,4 @@
-import random
+from EtheLeRandom import randint
 import playerList
 
 class Coven:
@@ -6,7 +6,7 @@ class Coven:
         self.power_selected = False
         self.killing_selected = False
         self.power = ["Coven Leader", "Hex Master", "Witch"]
-        self.killing = ["Conjurer", "Jinx", "Ritualist"]
+        self.killing = ["Conjurer", "Jinx", "Ritualist", "Coven Leader"]
         self.everythingelse = ["Dreamweaver",
                                "Enchanter",
                                "Illusionist",
@@ -19,29 +19,52 @@ class Coven:
 
     def select_role(self, player):
         if not self.power_selected:
-            if random.randint(1, 2) == 1:
-                role = self.power[random.randint(0, len(self.power)-1)]
+            if randint(1, 2) == 1:
+                role = self.power[randint(0, len(self.power)-1)]
                 playerList.playerRoleList[player] = role
                 self.power_selected = True
+                if role == "Coven Leader":
+                    self.power.remove("Coven Leader")
+                    self.killing.remove("Coven Leader")
 
             else:
-                role = self.everythingelse[random.randint(0, len(self.everythingelse)-1)]
+                role = self.everythingelse[randint(0, len(self.everythingelse)-1)]
                 self.everythingelse.remove(role)
+
+                if role == "Coven Leader":
+                    self.power.remove("Coven Leader")
+                    self.killing.remove("Coven Leader")
 
         elif not self.killing_selected:
-            if random.randint(1, 2) == 1:
+            if randint(1, 2) == 1:
                 self.killing_selected = True
-                role = self.killing[random.randint(0, len(self.killing)-1)]
+                role = self.killing[randint(0, len(self.killing)-1)]
+                if role == "Coven Leader":
+                    self.power.remove("Coven Leader")
+                    self.killing.remove("Coven Leader")
             else:
-                role = self.everythingelse[random.randint(0, len(self.everythingelse) - 1)]
+                role = self.everythingelse[randint(0, len(self.everythingelse) - 1)]
                 self.everythingelse.remove(role)
+                if role == "Coven Leader":
+                    self.power.remove("Coven Leader")
+                    self.killing.remove("Coven Leader")
 
 
         else:
-            role = self.everythingelse[random.randint(0, len(self.everythingelse) - 1)]
+            role = self.everythingelse[randint(0, len(self.everythingelse) - 1)]
             self.everythingelse.remove(role)
+            if role == "Coven Leader":
+                self.power.remove("Coven Leader")
+                self.killing.remove("Coven Leader")
 
         playerList.playerRoleList[player] = role
+        if role == "Coven Leader":
+            if role == "Coven Leader":
+                try:
+                    self.power.remove("Coven Leader")
+                    self.killing.remove("Coven Leader")
+                except:
+                    sixseven = 41
 
 
 class Apoc:
@@ -52,7 +75,7 @@ class Apoc:
                                "Beserker",]
 
     def select_role(self, player):
-            role = self.roles[random.randint(0, len(self.roles) - 1)]
+            role = self.roles[randint(0, len(self.roles) - 1)]
             self.roles.remove(role)
             playerList.playerRoleList[player] = role
 
@@ -69,12 +92,12 @@ class Neutral:
                         "Psychopath"]
 
     def select_role(self, player):
-        if random.randint(1, 2) == 1:
-            role = self.evil[random.randint(0, len(self.evil)-1)]
+        if randint(1, 2) == 1:
+            role = self.evil[randint(0, len(self.evil)-1)]
             self.evil.remove(role)
 
         else:
-            role = self.killing[random.randint(0, len(self.killing)-1)]
+            role = self.killing[randint(0, len(self.killing)-1)]
 
         playerList.playerRoleList[player] = role
 
@@ -106,13 +129,13 @@ class Town:
 
     def select_role(self, player):
         if self.power_count < 3:
-            if random.randint(1, 3) == 1:
-                role = self.power[random.randint(0, len(self.power)-1)]
+            if randint(1, 10) == 1:
+                role = self.power[randint(0, len(self.power)-1)]
                 self.power.remove(role)
                 self.power_count = self.power_count + 1
             else:
-                role = self.everythingelse[random.randint(0, len(self.everythingelse)-1)]
+                role = self.everythingelse[randint(0, len(self.everythingelse)-1)]
         else:
-            role = self.everythingelse[random.randint(0, len(self.everythingelse) - 1)]
+            role = self.everythingelse[randint(0, len(self.everythingelse) - 1)]
 
         playerList.playerRoleList[player] = role

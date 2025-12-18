@@ -1,6 +1,6 @@
 import roles
 import playerList
-from random import randint
+from EtheLeRandom import randint
 from colorama import Fore
 
 MaxApoc = randint(0, 3)
@@ -20,7 +20,7 @@ with open(path, 'r') as file:
     for line in file:
         playerList.playerList.append(line.strip())
 
-MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(5, len(playerList.playerList)-MaxCoven-MaxApoc+5)
+MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(5, len(playerList.playerList) - MaxCoven - MaxApoc + 5)
 
 
 def StartNewGame():
