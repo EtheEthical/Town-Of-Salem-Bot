@@ -3,7 +3,7 @@ import playerList
 from EtheLeRandom import randint
 from colorama import Fore
 
-MaxApoc = randint(1, 3)
+MaxApoc = randint(1, 4)
 MaxCoven = randint(2, 4)
 
 success = False
