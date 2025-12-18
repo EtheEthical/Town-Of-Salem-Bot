@@ -3,7 +3,7 @@ import playerList
 from random import randint
 from colorama import Fore
 
-MaxApoc = randint(0, 4)
+MaxApoc = randint(0, 3)
 MaxCoven = randint(2, 4)
 
 
@@ -57,7 +57,6 @@ def StartNewGame():
         else:
             Town.select_role(playerfr)
             playerList.playerList.remove(playerfr)
-
 
 StartNewGame()
 

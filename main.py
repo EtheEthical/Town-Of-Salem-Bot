@@ -1,17 +1,25 @@
-import random
+from random import randint
+from os import getenv
+
 import discord
 import roles
 import playerList
-import os
 
 bot = discord.Bot()
 
+#Role IDs
 gameMaster = 1432880451604709547
+alive = 1432889281231323268
+dead = 1432883624394362923
+
+#Channel IDs
+death_announcements = 1432858492842283089
 
 
-MaxApoc = random.randint(0, 4)
-MaxCoven = random.randint(2, 4)
-MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - random.randint(5, len(playerList.playerList)-MaxCoven-MaxApoc+5)
+
+MaxApoc = randint(0, 4)
+MaxCoven = randint(2, 4)
+MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(5, len(playerList.playerList)-MaxCoven-MaxApoc+5)
 
 
 def addPlayerToGame(player):
@@ -31,7 +39,7 @@ def StartNewGame():
 
     while playerList.playerList:
 
-        playerfr = playerList.playerList[random.randint(0, len(playerList.playerList)-1)]
+        playerfr = playerList.playerList[randint(0, len(playerList.playerList)-1)]
 
         if CovenCount < MaxCoven:
             Coven.select_role(playerfr)
@@ -68,6 +76,20 @@ async def start_game(ctx):
         await ctx.respond("You do not have permission to start a new game!", ephemeral=True)
 
 
+@bot.slash_command(name="kill-player", description="kills a player for real for real")
+async def kill_player(ctx, player: discord.Option(discord.User)):
+    member = ctx.guild.get_member(ctx.author.id)
+    if any(role.id == gameMaster for role in member.roles):
+        channel = bot.fetch_channel(death_announcements)
+        channel.send(f"# {player.mention}")
+        await player.remove_roles(ctx.guild.fetch_roles(alive))
+        await player.add_roles(ctx.guild.fetch_roles(dead))
+        await ctx.respond("Killed player!")
+    else:
+        ctx.respond("Yeah no buddy you dont have perms for ts :pray:")
 
-bot.run(os.getenv("TOKEN"))
+
+
+
+bot.run(getenv("TOKEN"))
 

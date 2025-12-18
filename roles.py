@@ -20,12 +20,15 @@ class Coven:
     def select_role(self, player):
         if not self.power_selected:
             if random.randint(1, 2) == 1:
-                self.power_selected = True
                 role = self.power[random.randint(0, len(self.power)-1)]
+                playerList.playerRoleList[player] = role
+                self.power_selected = True
+
             else:
                 role = self.everythingelse[random.randint(0, len(self.everythingelse)-1)]
                 self.everythingelse.remove(role)
-        if not self.killing_selected:
+
+        elif not self.killing_selected:
             if random.randint(1, 2) == 1:
                 self.killing_selected = True
                 role = self.killing[random.randint(0, len(self.killing)-1)]
@@ -80,9 +83,21 @@ class Town:
         self.power_count = 0
         self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor", "Duelist"]
         self.everythingelse = ["Admirer",
+                               "Bodyguard",
                                "Catalyst",
+                               "Cleric",
+                               "Coroner",
+                               "Crusader",
+                               "Investigator",
+                               "Lookout",
+                               "Oracle",
+                               "Psychic",
                                "Retributionist",
+                               "Seer",
+                               "Sheriff",
                                "Socialite",
+                               "Spy",
+                               "Trapper",
                                "Tavern Keeper",
                                "Deputy",
                                "Trickster",
