@@ -75,3 +75,5 @@ town = ["Alchemist",
 
 
 town_members = []
+
+all_roles = []

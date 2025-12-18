@@ -58,6 +58,7 @@ class Coven:
                 self.killing.remove("Coven Leader")
 
         playerList.playerRoleList[player] = role
+        playerList.all_roles.append(role)
         if role == "Coven Leader":
             if role == "Coven Leader":
                 try:
@@ -78,9 +79,12 @@ class Apoc:
             role = self.roles[randint(0, len(self.roles) - 1)]
             self.roles.remove(role)
             playerList.playerRoleList[player] = role
+            playerList.all_roles.append(role)
+
 
 class Neutral:
     def __init__(self):
+        self.pirate = False
         self.exe = False
         self.evil = ["Pirate",
                      "Jester",
@@ -104,9 +108,15 @@ class Neutral:
             self.exe = True
 
         playerList.playerRoleList[player] = role
+        if role == "Pirate":
+            self.pirate = True
+        else:
+            playerList.all_roles.append(role)
+
 
 class Town:
     def __init__(self):
+        self.admirer = 0
         self.power_count = 0
         self.alchemist_lol = False
         self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor", "Duelist"]
@@ -146,5 +156,9 @@ class Town:
             playerList.town_members.append(player)
 
         playerList.playerRoleList[player] = role
+        playerList.all_roles.append(role)
+
         if role == "Alchemist":
             self.alchemist_lol = True
+        if role == "Admirer":
+            self.admirer = self.admirer + 1

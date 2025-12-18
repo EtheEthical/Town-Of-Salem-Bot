@@ -67,7 +67,11 @@ def StartNewGame():
             Town.select_role(playerfr)
             playerList.playerList.remove(playerfr)
 
-StartNewGame()
+
+try:
+    StartNewGame()
+except:
+    StartNewGame()
 
 no_no_roles = ["Coven Leader", "Dreamweaver", "Illusionist", "Enchanter", "Medusa", "Voodoo Master"]
 
@@ -108,6 +112,25 @@ def exe():
         thing = playerList.town_members[randint(0, len(playerList.town_members)-1)]
         print(Fore.CYAN + f"The Executioner's Target is {thing}")
 
+def admirer():
+    for i in range(Town.admirer):
+        thing = playerList.town_members[randint(0, len(playerList.town_members)-1)]
+        print(Fore.CYAN + f"The Admirer's Obsession is {thing}")
+        playerList.town_members.remove(thing)
+
+def pirate():
+    landlubbers = []
+    if Neutral.pirate:
+        for i in range(3):
+            a = playerList.all_roles[randint(0, len(playerList.all_roles)-1)]
+            landlubbers.append(a)
+            playerList.all_roles.remove(a)
+
+        for i in range(len(landlubbers)):
+            print(Fore.CYAN + f"Landlubber: {landlubbers[i]}")
+
+
+
 for k, v in playerList.playerRoleList.items():
 
     color = Fore.WHITE
@@ -126,6 +149,8 @@ for k, v in playerList.playerRoleList.items():
 print('')
 alchemy()
 exe()
+admirer()
+pirate()
 
 
 while True:
