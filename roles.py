@@ -48,7 +48,7 @@ class Apoc:
     def __init__(self):
         self.roles = ["Soul Collector",
                                "Baker",
-                               "Plaugebearer",
+                               "Plaguebearer",
                                "Beserker",]
 
     def select_role(self, player):
