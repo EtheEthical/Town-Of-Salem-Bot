@@ -125,7 +125,8 @@ def pirate():
         b = playerList.town_members[randint(0, len(playerList.town_members)-1)]
         landlubbers.append(b)
 
-        b = playerList.coven_members[randint(0, len(playerList.coven_members)-1)]
+        c = playerList.coven_members[randint(0, len(playerList.coven_members)-1)]
+        landlubbers.append(c)
 
         for i in range(len(landlubbers)):
             print(Fore.CYAN + f"Landlubber: {landlubbers[i]}")
