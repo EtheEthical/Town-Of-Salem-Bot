@@ -58,6 +58,7 @@ class Coven:
                 self.killing.remove("Coven Leader")
 
         playerList.playerRoleList[player] = role
+        playerList.coven_members.append(role)
         playerList.all_roles.append(role)
         if role == "Coven Leader":
             if role == "Coven Leader":

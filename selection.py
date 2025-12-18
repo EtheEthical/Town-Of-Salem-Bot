@@ -119,10 +119,13 @@ def admirer():
 def pirate():
     landlubbers = []
     if Neutral.pirate:
-        for i in range(3):
-            a = playerList.all_roles[randint(0, len(playerList.all_roles)-1)]
-            landlubbers.append(a)
-            playerList.all_roles.remove(a)
+        a = playerList.all_roles[randint(0, len(playerList.all_roles)-1)]
+        landlubbers.append(a)
+
+        b = playerList.town_members[randint(0, len(playerList.town_members)-1)]
+        landlubbers.append(b)
+
+        b = playerList.coven_members[randint(0, len(playerList.coven_members)-1)]
 
         for i in range(len(landlubbers)):
             print(Fore.CYAN + f"Landlubber: {landlubbers[i]}")
@@ -145,10 +148,10 @@ for k, v in playerList.playerRoleList.items():
     print(color + f"{k}: {v}")
 
 print('')
+pirate()
 alchemy()
 exe()
 admirer()
-pirate()
 
 
 while True:
