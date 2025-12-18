@@ -81,6 +81,7 @@ class Apoc:
 
 class Neutral:
     def __init__(self):
+        self.exe = False
         self.evil = ["Pirate",
                      "Jester",
                      "Executioner",
@@ -99,11 +100,15 @@ class Neutral:
         else:
             role = self.killing[randint(0, len(self.killing)-1)]
 
+        if role == "Executioner":
+            self.exe = True
+
         playerList.playerRoleList[player] = role
 
 class Town:
     def __init__(self):
         self.power_count = 0
+        self.alchemist_lol = False
         self.power = ["Alchemist", "Jailor", "Marshal", "Mayor", "Monarch", "Prosecutor", "Duelist"]
         self.everythingelse = ["Admirer",
                                "Bodyguard",
@@ -135,7 +140,11 @@ class Town:
                 self.power_count = self.power_count + 1
             else:
                 role = self.everythingelse[randint(0, len(self.everythingelse)-1)]
+                playerList.town_members.append(player)
         else:
             role = self.everythingelse[randint(0, len(self.everythingelse) - 1)]
+            playerList.town_members.append(player)
 
         playerList.playerRoleList[player] = role
+        if role == "Alchemist":
+            self.alchemist_lol = True

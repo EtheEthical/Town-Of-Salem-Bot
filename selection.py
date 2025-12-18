@@ -3,9 +3,12 @@ import playerList
 from EtheLeRandom import randint
 from colorama import Fore
 
+from playerList import town_members
+
 MaxApoc = randint(0, 3)
 MaxCoven = randint(2, 4)
 
+success = False
 
 print("Formatting: ")
 print("file.txt:")
@@ -13,27 +16,33 @@ print("Ethan")
 print("Ben")
 print("Etc")
 print(" ")
-path = input("Please paste the path to the file that has all the players: ").rstrip()
 
+while success == False:
+    path = input("Please paste the path to the file that has all the players: ").rstrip()
 
-with open(path, 'r') as file:
-    for line in file:
-        playerList.playerList.append(line.strip())
+    try:
+        with open(path, 'r') as file:
+            for line in file:
+                playerList.playerList.append(line.strip())
+                success = True
+    except:
+        print(Fore.RED + "Invalid path!" + Fore.RESET)
 
 MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(5, len(playerList.playerList) - MaxCoven - MaxApoc + 5)
 
+Coven = roles.Coven()
+
+Apoc = roles.Apoc()
+
+Neutral = roles.Neutral()
+
+Town = roles.Town()
 
 def StartNewGame():
-    Coven = roles.Coven()
+
     CovenCount = 0
-
-    Apoc = roles.Apoc()
     ApocCount = 0
-
-    Neutral = roles.Neutral()
     NeutralCount = 0
-
-    Town = roles.Town()
 
     while playerList.playerList:
 
@@ -60,6 +69,45 @@ def StartNewGame():
 
 StartNewGame()
 
+no_no_roles = ["Coven Leader", "Dreamweaver", "Illusionist", "Enchanter", "Medusa", "Voodoo Master"]
+
+
+def alchemy():
+    role = "hi"
+    if Town.alchemist_lol:
+        thing = randint(1, 16)
+        if thing < 4:
+            pot_role = Coven.power[randint(0, len(Coven.power)-1)]
+            if pot_role not in no_no_roles:
+                role = pot_role
+                print(Fore.CYAN + f"The Alchemists's Ability is {role}!" + Fore.RESET)
+
+            else:
+                alchemy()
+        elif thing < 8:
+            pot_role = Coven.killing[randint(0, len(Coven.killing)-1)]
+            if pot_role not in no_no_roles:
+                role = pot_role
+                print(Fore.CYAN + f"The Alchemists's Ability is {role}!" + Fore.RESET)
+
+            else:
+                alchemy()
+
+        else:
+            pot_role = Coven.everythingelse[randint(0, len(Coven.everythingelse)-1)]
+            if pot_role not in no_no_roles:
+                role = pot_role
+                print(Fore.CYAN + f"The Alchemist's Ability is {role}!" + Fore.RESET)
+
+            else:
+                alchemy()
+
+
+def exe():
+    if Neutral.exe:
+        thing = playerList.town_members[randint(0, len(playerList.town_members)-1)]
+        print(Fore.CYAN + f"The Executioner's Target is {thing}")
+
 for k, v in playerList.playerRoleList.items():
 
     color = Fore.WHITE
@@ -74,6 +122,11 @@ for k, v in playerList.playerRoleList.items():
         color = Fore.GREEN
 
     print(color + f"{k}: {v}")
+
+print('')
+alchemy()
+exe()
+
 
 while True:
     keep_open = input(" ")

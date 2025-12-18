@@ -41,7 +41,7 @@ neutral = ["Pirate",
 
 apoc = ["Soul Collector",
                                "Baker",
-                               "Plaugebearer",
+                               "Plaguebearer",
                                "Beserker",]
 
 town = ["Alchemist",
@@ -72,3 +72,6 @@ town = ["Alchemist",
         "Trickster",
         "Veteran",
         "Vigilante"]
+
+
+town_members = []
