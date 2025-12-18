@@ -3,9 +3,7 @@ import playerList
 from EtheLeRandom import randint
 from colorama import Fore
 
-from playerList import town_members
-
-MaxApoc = randint(0, 3)
+MaxApoc = randint(1, 3)
 MaxCoven = randint(2, 4)
 
 success = False
@@ -28,7 +26,7 @@ while success == False:
     except:
         print(Fore.RED + "Invalid path!" + Fore.RESET)
 
-MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(5, len(playerList.playerList) - MaxCoven - MaxApoc + 5)
+MaxNeutral = len(playerList.playerList) - MaxApoc - MaxCoven - randint(6, 10)+1
 
 Coven = roles.Coven()
 
