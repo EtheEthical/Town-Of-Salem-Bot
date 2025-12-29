@@ -15,8 +15,8 @@ print("Ben")
 print("Etc")
 print(" ")
 
-while success == False:
-    path = input("Please paste the path to the file that has all the players: ").rstrip()
+while not success:
+    path: str = input("Please paste the path to the file that has all the players: ").rstrip()
 
     try:
         with open(path, 'r') as file:
@@ -105,6 +105,11 @@ def alchemy():
                 alchemy()
 
 
+def clear_screen():
+    for i in range(1000):
+        print("")
+
+
 def exe():
     if Neutral.exe:
         thing = playerList.town_members[randint(0, len(playerList.town_members)-1)]
@@ -156,4 +161,45 @@ admirer()
 
 
 while True:
-    keep_open = input(" ")
+    print("\n\n")
+    roll_again = input(Fore.CYAN + "Press enter to roll again!" + Fore.RESET)
+
+    if not roll_again:
+
+        clear_screen()
+
+        playerList.playerList.clear()
+        playerList.playerRoleList.clear()
+        playerList.town_members.clear()
+        playerList.coven_members.clear()
+        playerList.all_roles.clear()
+
+        Coven = roles.Coven()
+        Apoc = roles.Apoc()
+        Neutral = roles.Neutral()
+        Town = roles.Town()
+
+        with open(path, 'r') as file:
+            for line in file:
+                playerList.playerList.append(line.strip())
+
+        StartNewGame()
+
+        for k, v in playerList.playerRoleList.items():
+            color = Fore.WHITE
+            if v in playerList.coven:
+                color = Fore.MAGENTA
+            if v in playerList.apoc:
+                color = Fore.RED
+            if v in playerList.neutral:
+                color = Fore.YELLOW
+            if v in playerList.town:
+                color = Fore.GREEN
+
+            print(color + f"{k}: {v}")
+
+        print('')
+        pirate()
+        alchemy()
+        exe()
+        admirer()
